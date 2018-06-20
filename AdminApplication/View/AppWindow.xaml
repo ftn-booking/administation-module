@@ -1,0 +1,86 @@
+﻿<Window x:Class="AdminApplication.AppWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminApplication"
+        mc:Ignorable="d"
+        Title="Booking Admin Module" Height="426.05" Width="659.316" ResizeMode="NoResize">
+    <Grid>
+        <TabControl HorizontalAlignment="Left" Height="397" VerticalAlignment="Top" Width="653">
+            <TabItem Header="Accounts">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-19,-4">
+                    <ComboBox Name="AccountState" HorizontalAlignment="Left" Margin="503,65,0,0" VerticalAlignment="Top" Width="120" >
+                        <ComboBoxItem Content="ALL" IsSelected="True"/>
+                        <ComboBoxItem Content="Banned"/>
+                        <ComboBoxItem Content="Active"/>
+                        <ComboBoxItem Content="Inactive"/>
+                    </ComboBox>
+                    <Label Content="Account State:" HorizontalAlignment="Left" Margin="503,34,0,0" VerticalAlignment="Top"/>
+                    <DataGrid Name="AgentGrid" SelectionMode="Single" HorizontalAlignment="Left" Height="300" Margin="9,10,0,0" VerticalAlignment="Top" Width="489" SelectionChanged="AgentGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Type" IsReadOnly="True"  Binding="{Binding Path=UserType}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Email" IsReadOnly="True"  Binding="{Binding Path=Email}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Pid" IsReadOnly="True"  Binding="{Binding Path=Pid}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Active" IsReadOnly="True"  Binding="{Binding Path=Active}" Width="60"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Banned" IsReadOnly="True" Binding="{Binding Path=Banned}"  Width="60"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button Content="Add Agent" Name="CreateNewButton" HorizontalAlignment="Left" Margin="10,328,0,0" VerticalAlignment="Top" Width="75" Click="CreateNewButton_Click"/>
+                    <Button Content="Activate"  Name="ActivationButton" HorizontalAlignment="Left" Margin="325,328,0,0" VerticalAlignment="Top" Width="75" Click="ActivationButton_Click"/>
+                    <Button Content="Ban"  Name="BanButton" HorizontalAlignment="Left" Margin="418,328,0,0" VerticalAlignment="Top" Width="75" Click="BanButton_Click"/>
+                    <Label Content="Account Type:" HorizontalAlignment="Left" Margin="503,102,0,0" VerticalAlignment="Top"/>
+                    <ComboBox Name="AccountType" HorizontalAlignment="Left" Margin="503,133,0,0" VerticalAlignment="Top" Width="120">
+                        <ComboBoxItem Content="ALL" IsSelected="True"/>
+                        <ComboBoxItem Content="Visitor"/>
+                        <ComboBoxItem Content="Agent"/>
+                        <ComboBoxItem Content="Admin"/>
+                    </ComboBox>
+                    <Label Content="Email" HorizontalAlignment="Left" Margin="503,174,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="EmailTextBox" HorizontalAlignment="Left" Height="23" Margin="503,205,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Button Name="FilterButton" Content="Filter" HorizontalAlignment="Left" Margin="503,261,0,0" VerticalAlignment="Top" Width="75" Click="FilterButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Registries">
+                <Grid Background="#FFE5E5E5" Margin="0,1,0,-1">
+                    <DataGrid Name="RegistryDataGrid" HorizontalAlignment="Left" Height="293" Margin="105,30,0,0" VerticalAlignment="Top" Width="532" SelectionChanged="RegistryDataGrid_SelectionChanged">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" IsReadOnly="True"  Binding="{Binding Path=Id}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Name" IsReadOnly="True"  Binding="{Binding Path=Name}" Width="130"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Active" IsReadOnly="True"  Binding="{Binding Path=Active}" Width="130"></DataGridTextColumn>
+
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Label Content="Select Registry:" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top"/>
+                    <Button Name="RegistryItemActivationButton" Content="Activate" HorizontalAlignment="Left" Margin="431,339,0,0" VerticalAlignment="Top" Width="75" IsEnabled="True" Click="RegistryItemActivation_Click"/>
+                    <Button Name="AddRegistyItemButton" Content="Add" HorizontalAlignment="Left" Margin="562,339,0,0" VerticalAlignment="Top" Width="75" Click="AddRegistyItemButton_Click"/>
+                    <ComboBox Name="RegistryNameCheckbox" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top" Width="90" SelectionChanged="RegistryName_SelectionChanged">
+                        <ComboBoxItem Content="Lodging" />
+                        <ComboBoxItem Content="Feature"/>
+                        <ComboBoxItem Content="Food"/>
+                    </ComboBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Comments">
+                <Grid Name="CommentGrid" Background="#FFE5E5E5">
+                    <Label Content="Unchecked Comments: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Name="CommentNumberLabel" Content="0" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.363,0.542"/>
+                    <TextBlock Name="CommentContentTextBlock" HorizontalAlignment="Left" Height="278" Margin="10,41,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="627"/>
+                    <Button Name="ApproveCommentButton" Content="Approve" HorizontalAlignment="Left" Margin="562,339,0,0" VerticalAlignment="Top" Width="75" Click="ApproveCommentButton_Click"/>
+                    <Button Name="DisapproveCommentButton" Content="Disapprove" HorizontalAlignment="Left" Margin="10,339,0,0" VerticalAlignment="Top" Width="75" Click="DisapproveCommentButton_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Profanities">
+                <Grid Background="#FFE5E5E5">
+                    <ListBox Name="ProfanityListBox" HorizontalAlignment="Left" Height="334" Margin="20,25,0,0" VerticalAlignment="Top" Width="201"/>
+                    <Label Content="Existing profanities:" HorizontalAlignment="Left" Margin="20,-1,0,0" VerticalAlignment="Top"/>
+                    <TextBox Name="ProfanityTextBox" HorizontalAlignment="Left" Height="25" Margin="243,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="150"/>
+                    <Button Name="AddProfanity" Content="Add" HorizontalAlignment="Left" Margin="432,62,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="AddProfanity_Click"/>
+                    <Button Name="RemoveProfanities" Content="Remove" HorizontalAlignment="Left" Margin="432,142,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="RemoveProfanities_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<Window x:Class="AdminApplication.View.AddAgent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AdminApplication.View"
+        mc:Ignorable="d"
+            Title="New Agent" Height="265.808" Width="277.299" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+    <Grid Margin="0,0,4,1">
+
+        <Label Content="Email:" HorizontalAlignment="Left" Margin="29,21,0,0" VerticalAlignment="Top"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="26,47,0,0" VerticalAlignment="Top"/>
+        <Label Content="Lastname:" HorizontalAlignment="Left" Margin="7,73,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.135,0.352"/>
+        <Label Content="City:" HorizontalAlignment="Left" Margin="37,99,0,0" VerticalAlignment="Top"/>
+        <Label Content="Phone:" HorizontalAlignment="Left" Margin="24,130,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.486,-1.528"/>
+        <Button Name="CancelButton" Content="Cancel" HorizontalAlignment="Left" Margin="18,206,0,0" VerticalAlignment="Top" Width="75" Click="CancelButton_Click"/>
+        <Button Name="ConfirmButton" Content="Confirm" HorizontalAlignment="Left" Margin="171,206,0,0" VerticalAlignment="Top" Width="75" Click="ConfirmButton_Click"/>
+        <TextBox Name="EmailTextBox" HorizontalAlignment="Left" Height="23" Margin="89,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="NameTextBox" HorizontalAlignment="Left" Height="23" Margin="89,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="LastnameTextBox" HorizontalAlignment="Left" Height="23" Margin="89,75,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="CityTextBox" HorizontalAlignment="Left" Height="23" Margin="89,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBox Name="PhoneTextBox" HorizontalAlignment="Left" Height="23" Margin="89,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="PID:" HorizontalAlignment="Left" Margin="37,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.482,0.16"/>
+        <TextBox Name="PIDTextBox" HorizontalAlignment="Left" Height="23" Margin="89,159,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+
+    </Grid>
+</Window>

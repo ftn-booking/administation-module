@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApplication", "AdminApplication\AdminApplication.csproj", "{B35EE423-05A8-46C2-A649-E3AE43FFAD84}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "temp", "temp\temp.csproj", "{6D3C4FB4-570E-4FCD-B43F-4814E7753034}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B35EE423-05A8-46C2-A649-E3AE43FFAD84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B35EE423-05A8-46C2-A649-E3AE43FFAD84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B35EE423-05A8-46C2-A649-E3AE43FFAD84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B35EE423-05A8-46C2-A649-E3AE43FFAD84}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D3C4FB4-570E-4FCD-B43F-4814E7753034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D3C4FB4-570E-4FCD-B43F-4814E7753034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D3C4FB4-570E-4FCD-B43F-4814E7753034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D3C4FB4-570E-4FCD-B43F-4814E7753034}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F3379D22-33CE-44E5-B4FF-1FFA23F9EB32}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+D:\th\XML\AdminApplication\temp\bin\Debug\temp.exe.config
+D:\th\XML\AdminApplication\temp\bin\Debug\temp.exe
+D:\th\XML\AdminApplication\temp\bin\Debug\temp.pdb
+D:\th\XML\AdminApplication\temp\obj\Debug\temp.csprojResolveAssemblyReference.cache
+D:\th\XML\AdminApplication\temp\obj\Debug\temp.csproj.CoreCompileInputs.cache
+D:\th\XML\AdminApplication\temp\obj\Debug\temp.exe
+D:\th\XML\AdminApplication\temp\obj\Debug\temp.pdb
+D:\th\XML\AdminApplication\temp\bin\Debug\AdminApplication.exe
+D:\th\XML\AdminApplication\temp\bin\Debug\Newtonsoft.Json.dll
+D:\th\XML\AdminApplication\temp\bin\Debug\AdminApplication.pdb
+D:\th\XML\AdminApplication\temp\bin\Debug\AdminApplication.exe.config
+D:\th\XML\AdminApplication\temp\bin\Debug\Newtonsoft.Json.xml
+D:\th\XML\AdminApplication\temp\obj\Debug\temp.csproj.CopyComplete
