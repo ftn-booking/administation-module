@@ -80,7 +80,10 @@ namespace AdminApplication
             registriesDictionary.Add("Food", "food");
             
         }
-
+        public void AgentAdded()
+        {
+            reloadAgents();
+        }
         private void reloadProfanities()
         {
             throw new NotImplementedException();
@@ -181,7 +184,7 @@ namespace AdminApplication
         private void CreateNewButton_Click(object sender, RoutedEventArgs e)
         {
             checkTime();
-            AddAgent addAgent = new AddAgent();
+            AddAgent addAgent = new AddAgent(this);
             addAgent.ShowDialog();
         }
 

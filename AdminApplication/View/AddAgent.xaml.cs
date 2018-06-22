@@ -21,8 +21,10 @@ namespace AdminApplication.View
     /// </summary>
     public partial class AddAgent : Window
     {
-        public AddAgent()
+        private AppWindow parent;
+        public AddAgent(AppWindow parent)
         {
+            this.parent = parent;
             InitializeComponent();
         }
 
@@ -52,6 +54,7 @@ namespace AdminApplication.View
                 MessageBox.Show("Couldn't add agent");
                 Console.WriteLine(ex.ToString());
             }
+            parent.AgentAdded();
             this.Close();
 
         }
