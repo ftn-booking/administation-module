@@ -55,7 +55,7 @@ namespace AdminApplication
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
             try
             {
@@ -71,7 +71,7 @@ namespace AdminApplication
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.ToString());
             }
 
             registriesDictionary = new Dictionary<string, string>();
@@ -86,7 +86,14 @@ namespace AdminApplication
         }
         private void reloadProfanities()
         {
-            throw new NotImplementedException();
+            ProfanityListBox.Items.Clear();
+            List<String> profanities = Client.GetProfanities();
+
+            foreach (var item in profanities)
+            {
+                ProfanityListBox.Items.Add(item);
+            }
+            
         }
 
         private void reloadComments()
@@ -310,18 +317,19 @@ namespace AdminApplication
         private void AddProfanity_Click(object sender, RoutedEventArgs e)
         {
             checkTime();
-            if (ProfanityTextBox.Text != null && !ProfanityTextBox.Text.Equals(""))
+            if (ProfanityTextBox.Text != null && !ProfanityTextBox.Text.Trim().Equals(""))
             {
-                Client.AddProfanity(ProfanityTextBox.Text);
+                Client.AddProfanity(ProfanityTextBox.Text.Trim());
                 ProfanityTextBox.Text = "";
             }
+            reloadProfanities();
         }
 
         private void RemoveProfanities_Click(object sender, RoutedEventArgs e)
         {
             checkTime();
             Client.RemoveProfanity(ProfanityListBox.SelectedItem.ToString());
-            
+            reloadProfanities();
         }
 
         private void RegistryName_SelectionChanged(object sender, SelectionChangedEventArgs e)

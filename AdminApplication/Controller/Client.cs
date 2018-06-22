@@ -14,12 +14,13 @@ namespace AdminApplication.Controller
 {
     public class Client
     {
+        private static string url = "https://localhost:8080/api";
         
         public static List<RegistryTableItem> GetRegistryItems(string registryName)
         {
             
             
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/registry/"+registryName);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+ "/registry/" +registryName);
             
             httpWebRequest.Method = "GET";
 
@@ -41,7 +42,7 @@ namespace AdminApplication.Controller
                  delegate (object s, X509Certificate certificate,
                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
                  { return true; };
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/login");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/login");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -68,8 +69,8 @@ namespace AdminApplication.Controller
 
         public static void  UpdateRegistry(String registryName, RegistryTableItem registryTableItem)
         {
-            string url = "https://localhost:8080/api/registry/" + registryName + "Registry";
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/registry/" + registryName + "Registry");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
             httpWebRequest.UseDefaultCredentials = true;
@@ -94,7 +95,7 @@ namespace AdminApplication.Controller
         }
         public static void AddToRegistry(String registryName, RegistryTableItem registryTableItem)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/registry/" + registryName + "Registry");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/registry/" + registryName + "Registry");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -117,7 +118,7 @@ namespace AdminApplication.Controller
         }
         public static List<Account> GetAccounts()
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/users");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users");
 
             httpWebRequest.Method = "GET";
 
@@ -134,7 +135,7 @@ namespace AdminApplication.Controller
         }
         public static void UpdateAccount(Account account)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/users/" + account.Id);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users/" + account.Id);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -156,7 +157,7 @@ namespace AdminApplication.Controller
         }
         public static void AddAccount(NewAccountDTO newAccountDTO)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/users");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -178,7 +179,7 @@ namespace AdminApplication.Controller
         }
         public static List<Comment> GetComments()
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/comments");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+"/admin/comments");
 
             httpWebRequest.Method = "GET";
 
@@ -195,7 +196,7 @@ namespace AdminApplication.Controller
         }
         public static void ApproveComment(String approval, Comment currentComment)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/comments/" + currentComment.Id);
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/comments/" + currentComment.Id);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -217,7 +218,7 @@ namespace AdminApplication.Controller
         }
         public static List<String> GetProfanities()
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/profanities");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+"/admin/profanity");
 
             httpWebRequest.Method = "GET";
 
@@ -236,7 +237,7 @@ namespace AdminApplication.Controller
 
         public static void AddProfanity(String profanity)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/profanities/1");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/profanity");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -258,9 +259,9 @@ namespace AdminApplication.Controller
         }
         public static void RemoveProfanity(String profanity)
         {
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/api/admin/profanities/2");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/profanity");
             httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
+            httpWebRequest.Method = "PUT";
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
