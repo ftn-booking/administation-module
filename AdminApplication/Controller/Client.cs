@@ -15,7 +15,13 @@ namespace AdminApplication.Controller
     public class Client
     {
         private static string url = "https://localhost:8080/api";
-        
+        private static string userToken;
+
+
+       
+
+
+
         public static List<RegistryTableItem> GetRegistryItems(string registryName)
         {
             
@@ -23,8 +29,8 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+ "/registry/" +registryName);
             
             httpWebRequest.Method = "GET";
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
-            
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
@@ -36,13 +42,14 @@ namespace AdminApplication.Controller
             }
         }
 
-        public static string Login(string text, string password)
+        public static void Login(string text, string password)
         {
             ServicePointManager.ServerCertificateValidationCallback =
                  delegate (object s, X509Certificate certificate,
                 X509Chain chain, SslPolicyErrors sslPolicyErrors)
                  { return true; };
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/login");
+            //var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/login");
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://localhost:8080/login");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
 
@@ -57,13 +64,41 @@ namespace AdminApplication.Controller
                 streamWriter.Flush();
                 streamWriter.Close();
             }
-
+            string token;
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
-                return streamReader.ReadToEnd();
-
+                token = streamReader.ReadToEnd();
             }
+
+
+
+            httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/login");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + token);
+            httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+
+                string result =  streamReader.ReadToEnd();
+                if(result.Equals("ok"))
+                {
+                    userToken = token;
+                    return;
+                }else
+                {
+                    throw new Exception("derp");
+                }
+                
+            }
+
+            
+
+
+
+
+         
         }
 
 
@@ -74,6 +109,7 @@ namespace AdminApplication.Controller
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
             httpWebRequest.UseDefaultCredentials = true;
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -98,6 +134,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/registry/" + registryName + "Registry");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
@@ -121,7 +158,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users");
 
             httpWebRequest.Method = "GET";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -138,7 +175,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users/" + account.Id);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = account.ToJSONUpdate();
@@ -160,7 +197,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/users");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = newAccountDTO.ToJSON();
@@ -182,7 +219,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+"/admin/comments");
 
             httpWebRequest.Method = "GET";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -199,7 +236,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/comments/" + currentComment.Id);
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 
@@ -221,7 +258,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url+"/admin/profanity");
 
             httpWebRequest.Method = "GET";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
 
 
             var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
@@ -240,7 +277,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/profanity");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
 
@@ -262,7 +299,7 @@ namespace AdminApplication.Controller
             var httpWebRequest = (HttpWebRequest)WebRequest.Create(url + "/admin/profanity");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "PUT";
-
+            httpWebRequest.Headers.Add("Authorization", "Bearer " + userToken);
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
 

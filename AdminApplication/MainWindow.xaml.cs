@@ -61,8 +61,8 @@ namespace AdminApplication
         {
             try
             {
-                string userId = Client.Login(UsernameText.Text, PasswordText.Password);
-                AppWindow appWindow = new AppWindow(userId);
+                Client.Login(UsernameText.Text, PasswordText.Password);
+                AppWindow appWindow = new AppWindow();
                 appWindow.Show();
                 this.Close();
             }catch(Exception ex)

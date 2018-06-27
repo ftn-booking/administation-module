@@ -27,7 +27,7 @@ namespace AdminApplication
     {
         #region properties
 
-        private string userId;
+       
         private List<Account> agentAccounts;
         private List<Comment> comments;
         private Comment currentComment;
@@ -41,9 +41,9 @@ namespace AdminApplication
 
 
 
-        public AppWindow(string userId)
+        public AppWindow()
         {
-            this.userId = userId;
+            
             agentAccounts = new List<Account>();
             lastTime = DateTime.Now;
             
